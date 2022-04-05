@@ -35,13 +35,13 @@ CREATE TABLE Pessoa(cpf_pessoa VARCHAR2(11), nome VARCHAR2(40),
 	pais VARCHAR2(20), CONSTRAINT pessoa_pkey PRIMARY KEY(cpf_pessoa));
 
 -- Tabela Telefone_pessoa
-CREATE TABLE Telefone_pessoa(dono VARCHAR2(11), numero VARCHAR2(16),
-	CONSTRAINT telefone_pessoa_pkey PRIMARY KEY(dono, numero),
+CREATE TABLE Telefone_pessoa(dono VARCHAR2(11), numero_telefone VARCHAR2(16),
+	CONSTRAINT telefone_pessoa_pkey PRIMARY KEY(dono, numero_telefone),
 	CONSTRAINT telefone_pessoa_fkey FOREIGN KEY(dono) REFERENCES Pessoa(cpf_pessoa));
 
 -- Tabela Telefone_centro
-CREATE TABLE Telefone_centro(id_centro INTEGER, numero VARCHAR2(16),
-	CONSTRAINT telefone_centro_pkey PRIMARY KEY(id_centro, numero),
+CREATE TABLE Telefone_centro(id_centro INTEGER, numero_telefone VARCHAR2(16),
+	CONSTRAINT telefone_centro_pkey PRIMARY KEY(id_centro, numero_telefone),
 	CONSTRAINT telefone_centro_fkey FOREIGN KEY(id_centro) REFERENCES Centro(id_centro));
 
 -- Tabela Paciente
