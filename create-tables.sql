@@ -50,19 +50,19 @@ CREATE TABLE Paciente(cpf_paciente VARCHAR2(11),
 	CONSTRAINT paciente_fkey FOREIGN KEY(cpf_paciente) REFERENCES Pessoa (cpf_pessoa));
 
 -- Tabela Acompanhante
-CREATE TABLE Acompanhante(cpf_paciente VARCHAR2(11), nome VARCHAR2(30), 
-	parentesco VARCHAR2(10), CONSTRAINT acompanhante_pkey PRIMARY KEY(cpf_paciente, nome),
+CREATE TABLE Acompanhante(cpf_paciente VARCHAR2(11), nome_acompanhante  VARCHAR2(30), parentesco VARCHAR2(10), 
+	CONSTRAINT acompanhante_pkey PRIMARY KEY(cpf_paciente, nome_acompanhante),
 	CONSTRAINT acompanhante_fkey FOREIGN KEY(cpf_paciente) REFERENCES Paciente (cpf_paciente));
 
 -- Tabela Atendente
-CREATE TABLE Atendente(cpf_atendente VARCHAR2(11), 
-	centro INTEGER, CONSTRAINT atendente_pkey PRIMARY KEY(cpf_atendente),
+CREATE TABLE Atendente(cpf_atendente VARCHAR2(11), centro INTEGER, 
+	CONSTRAINT atendente_pkey PRIMARY KEY(cpf_atendente),
 	CONSTRAINT atendente_fkey1 FOREIGN KEY(cpf_atendente) REFERENCES Pessoa(cpf_pessoa),
 	CONSTRAINT atendente_fkey2 FOREIGN KEY(centro) REFERENCES Centro(id_centro));
 
 -- Tabela Profissional_de_saude
 CREATE TABLE Profissional_de_saude(cpf_profissional VARCHAR2(11), 
-										cpf_gerente VARCHAR2(11), centro INTEGER, 
+			cpf_gerente VARCHAR2(11), centro INTEGER, 
 	CONSTRAINT prof_saude_pkey PRIMARY KEY(cpf_profissional),
 	CONSTRAINT prof_saude_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Pessoa(cpf_pessoa),
 	CONSTRAINT prof_saude_fkey2 FOREIGN KEY(centro) REFERENCES Centro(id_centro),
