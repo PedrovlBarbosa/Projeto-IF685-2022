@@ -1,23 +1,24 @@
-DROP TABLE Centro;
-DROP TABLE Pessoa;
-DROP TABLE Telefone_pessoa;
-DROP TABLE Telefone_centro;
-DROP TABLE Paciente;
-DROP TABLE Atendente;
-DROP TABLE Profissional_de_saude;
-DROP TABLE Turno;
-DROP TABLE Area_atuacao;
-DROP TABLE Medico;
-DROP TABLE Medico_especialista;
-DROP TABLE Medico_geral;
-DROP TABLE Enfermeira;
-DROP TABLE Exame;
+DROP TABLE Agendamento_criado;
+DROP TABLE Agendamento;
+DROP TABLE Execucao;
+DROP TABLE Acompanhante;
 DROP TABLE Laudo;
 DROP TABLE Exame_descricao;
-DROP TABLE Execucao;
-DROP TABLE Agendamento;
-DROP TABLE Agendamento_criado;
-DROP TABLE Acompanhante;
+DROP TABLE Exame;
+DROP TABLE Paciente;
+DROP TABLE Atendente;
+DROP TABLE Medico_especialista;
+DROP TABLE Medico_geral;
+DROP TABLE Medico;
+DROP TABLE Enfermeira;
+DROP TABLE Turno;
+DROP TABLE Area_atuacao;
+DROP TABLE Profissional_de_saude;
+DROP TABLE Telefone_pessoa;
+DROP TABLE Telefone_centro;
+DROP TABLE Centro;
+DROP TABLE Pessoa;
+DROP SEQUENCE centro_seq;
 
 -- Tabela Centro
 CREATE TABLE Centro(id_centro INTEGER, capacidade INTEGER, 
@@ -91,8 +92,7 @@ CREATE TABLE Medico(cpf_medico VARCHAR2(11), CRM VARCHAR2(20) NOT NULL,
 	CONSTRAINT medico_fkey FOREIGN KEY(cpf_medico) REFERENCES Profissional_de_saude(cpf_profissional));
 
 -- Tabela Medico_especialista
-CREATE TABLE Medico_especialista(cpf_especialista VARCHAR2(11), 
-											   especialidade VARCHAR2(30),
+CREATE TABLE Medico_especialista(cpf_especialista VARCHAR2(11), especialidade VARCHAR2(30),
 	CONSTRAINT medico_esp_pkey PRIMARY KEY(cpf_especialista),
 	CONSTRAINT medico_esp_fkey FOREIGN KEY(cpf_especialista) REFERENCES Medico(cpf_medico));
 
@@ -113,7 +113,7 @@ CREATE TABLE Exame_descricao(nome varchar2(30), descricao varchar2(255),
 
 -- Tabela Laudo
 CREATE TABLE Laudo(cpf_profissional VARCHAR2(11), cpf_paciente VARCHAR2(11),
-				   nome_exame VARCHAR2(30), resultado VARCHAR2(255),
+		   nome_exame VARCHAR2(30), resultado VARCHAR2(255),
 	CONSTRAINT laudo_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),
 	CONSTRAINT laudo_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),
 	CONSTRAINT laudo_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),
