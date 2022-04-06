@@ -18,7 +18,7 @@ DROP TABLE Telefone_pessoa;
 DROP TABLE Telefone_centro;
 DROP TABLE Centro;
 DROP TABLE Pessoa;
-DROP SEQUENCE centro_seq;
+DROP SEQUENCE exame_seq;
 
 -- Tabela Centro
 CREATE TABLE Centro(id_centro INTEGER, capacidade INTEGER, 
@@ -102,29 +102,28 @@ CREATE TABLE Medico_geral(cpf_geral VARCHAR2(11),
 	CONSTRAINT medico_geral_fkey FOREIGN KEY(cpf_geral) REFERENCES Medico(cpf_medico));
 
 -- Tabela Exame
-CREATE TABLE Exame(nome varchar2(30), id_centro integer, preco number(7,2),
-	CONSTRAINT exame_pkey PRIMARY KEY(nome),
-	CONSTRAINT exame_fkey FOREIGN KEY(id_centro) REFERENCES Centro (id_centro));
+CREATE TABLE Exame(id_exame INTEGER, nome varchar2(30), id_centro INTEGER, preco number(7,2),  
+	CONSTRAINT exame_pkey PRIMARY KEY(id_exame),  
+	CONSTRAINT exame_fkey FOREIGN KEY(id_centro) REFERENCES Centro (id_centro))
 
 -- Tabela Exame_descricao
-CREATE TABLE Exame_descricao(nome varchar2(30), descricao varchar2(255), 
-	CONSTRAINT exame_desc_pkey PRIMARY KEY(nome),
-	CONSTRAINT exame_desc_fkey FOREIGN KEY(nome) REFERENCES Exame(nome));
+CREATE TABLE Exame_descricao(id_exame INTEGER, descricao VARCHAR2(255), 
+	CONSTRAINT exame_desc_pkey PRIMARY KEY(id_exame),
+	CONSTRAINT exame_desc_fkey FOREIGN KEY(id_exame) REFERENCES Exame(id_exame));
 
 -- Tabela Laudo
 CREATE TABLE Laudo(cpf_profissional VARCHAR2(11), cpf_paciente VARCHAR2(11),
-		   nome_exame VARCHAR2(30), resultado VARCHAR2(255),
+		   id_exame INTEGER, resultado VARCHAR2(255),
 	CONSTRAINT laudo_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),
 	CONSTRAINT laudo_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),
 	CONSTRAINT laudo_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),
-	CONSTRAINT laudo_fkey3 FOREIGN KEY(nome_exame) REFERENCES Exame(nome));
+	CONSTRAINT laudo_fkey3 FOREIGN KEY(id_exame) REFERENCES Exame(id_exame));
 
 -- Tabela Execução
-CREATE TABLE Execucao(cpf_profissional varchar2(11), hora timestamp, 
-									id_exame varchar2(30),
+CREATE TABLE Execucao(cpf_profissional varchar2(11), hora timestamp, id_exame INTEGER,
 	CONSTRAINT exec_pkey PRIMARY KEY(cpf_profissional, hora, id_exame),
 	CONSTRAINT exec_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),
-	CONSTRAINT exec_fkey2 FOREIGN KEY(id_exame) REFERENCES Exame(nome));
+	CONSTRAINT exec_fkey2 FOREIGN KEY(id_exame) REFERENCES Exame(id_exame));
 
 -- Tabela Agendamento
 CREATE TABLE Agendamento(cpf_profissional varchar2(11), 
