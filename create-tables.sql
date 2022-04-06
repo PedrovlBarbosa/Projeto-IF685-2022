@@ -18,7 +18,7 @@ DROP TABLE Telefone_pessoa;
 DROP TABLE Telefone_centro;
 DROP TABLE Centro;
 DROP TABLE Pessoa;
-DROP SEQUENCE exame_seq;
+DROP SEQUENCE laudo_seq;
 
 -- Tabela Centro
 CREATE TABLE Centro(id_centro INTEGER, capacidade INTEGER, 
@@ -112,9 +112,9 @@ CREATE TABLE Exame_descricao(id_exame INTEGER, descricao VARCHAR2(255),
 	CONSTRAINT exame_desc_fkey FOREIGN KEY(id_exame) REFERENCES Exame(id_exame));
 
 -- Tabela Laudo
-CREATE TABLE Laudo(cpf_profissional VARCHAR2(11), cpf_paciente VARCHAR2(11),
+CREATE TABLE Laudo(laudo_id INTEGER, cpf_profissional VARCHAR2(11), cpf_paciente VARCHAR2(11),
 		   id_exame INTEGER, resultado VARCHAR2(255),
-	CONSTRAINT laudo_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),
+	CONSTRAINT laudo_pkey PRIMARY KEY(laudo_id),
 	CONSTRAINT laudo_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),
 	CONSTRAINT laudo_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),
 	CONSTRAINT laudo_fkey3 FOREIGN KEY(id_exame) REFERENCES Exame(id_exame));
@@ -140,3 +140,9 @@ CREATE TABLE Agendamento_criado(cpf_atendente varchar2(11),
 					 hora_marcacao timestamp, hora_agendamento timestamp,
 	CONSTRAINT agend_criado_pkey PRIMARY KEY(cpf_atendente),
 	CONSTRAINT agend_criado_fkey1 FOREIGN KEY(cpf_atendente) REFERENCES Pessoa(cpf_pessoa))
+
+CREATE SEQUENCE laudo_seq
+  MINVALUE 1 
+  START WITH 1 
+  INCREMENT BY 1 
+  NOCACHE
