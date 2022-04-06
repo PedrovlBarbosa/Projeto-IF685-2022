@@ -102,12 +102,9 @@ CREATE SEQUENCE centro_seq
   INCREMENT BY 1
   NOCACHE;
 
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 100, 'Rendeiras', null, 'Barnaúba', 'Rua Marechal Jorge Gomes', 192, 'SP', 5995782, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 80, 'São José', null, 'Parnaíba', 'Rua Santa Catarina', 2813, 'PI', 69334233, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 70, 'Centro', null, 'Ariquemes', 'Travessa Antônio Ferreira', 213, 'PA', 68700216, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 60, 'Vila Gomes Cardim', null, 'São Paulo', 'Rua Serra de Bragança', 172, 'SP', 03318000, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 120, 'República', null, 'Jundiaí', 'Avenida São João', 264, 'SP', 13216000, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 75, 'Nazaré', null, 'Belém', 'Avenida Governador José Malcher', 63, 'PR', 01045001, 'Brasil');
+INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 70, 'Rendeiras', null, 'Barnaúba', 'Rua Marechal Jorge Gomes', 192, 'SP', 5995782, 'Brasil');
+INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 30, 'São José', null, 'Parnaíba', 'Rua Santa Catarina', 2813, 'PI', 69334233, 'Brasil');
+INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 50, 'Centro', null, 'Ariquemes', 'Travessa Antônio Ferreira', 213, 'PA', 68700216, 'Brasil');
 
 INSERT INTO Telefone_centro VALUES (1, '(11) 3760-3346');
 INSERT INTO Telefone_centro VALUES (1, '(11) 2665-4205');
@@ -115,12 +112,7 @@ INSERT INTO Telefone_centro VALUES (2, '(86) 2134-3872');
 INSERT INTO Telefone_centro VALUES (2, '(86) 2619-1733');
 INSERT INTO Telefone_centro VALUES (3, '(91) 3753-3422');
 INSERT INTO Telefone_centro VALUES (3, '(91) 3457-1264');
-INSERT INTO Telefone_centro VALUES (4, '(11) 3579-5366');
-INSERT INTO Telefone_centro VALUES (4, '(11) 2324-4950');
-INSERT INTO Telefone_centro VALUES (5, '(11) 2842-6248');
-INSERT INTO Telefone_centro VALUES (5, '(11) 3120-5513');
-INSERT INTO Telefone_centro VALUES (6, '(41) 2421-5433');
-INSERT INTO Telefone_centro VALUES (6, '(41) 2516-1655');
+
 INSERT INTO Telefone_pessoa VALUES ('07995976437', '(63) 92252-4716');
 INSERT INTO Telefone_pessoa VALUES ('07995976437', '(49) 3121-2123');
 INSERT INTO Telefone_pessoa VALUES ('12826023497', '(97) 92785-9663');
@@ -137,7 +129,7 @@ INSERT INTO Telefone_pessoa VALUES ('29874723580', '(87) 93550-1352');
 INSERT INTO Telefone_pessoa VALUES ('48466958401', '(49) 93475-8490');
 INSERT INTO Telefone_pessoa VALUES ('48487552986', '(97) 93696-5923');
 INSERT INTO Telefone_pessoa VALUES ('49371521732', '(84) 93870-9773');
-INSERT INTO Telefone_pessoa VALUES('50413745384', '(16) 92167-4413');
+INSERT INTO Telefone_pessoa VALUES ('50413745384', '(16) 92167-4413');
 INSERT INTO Telefone_pessoa VALUES ('54201541029', '(18) 93351-5586');
 INSERT INTO Telefone_pessoa VALUES ('60220992851', '(88) 92106-0527');
 INSERT INTO Telefone_pessoa VALUES ('65039251742', '(98) 93456-1129');
@@ -163,11 +155,11 @@ INSERT INTO Paciente VALUES ('25483157036');
 INSERT INTO Paciente VALUES ('29021059088');
 
 INSERT INTO Atendente VALUES ('29705630704', 1);
-INSERT INTO Atendente VALUES ('29874723580', 2);
-INSERT INTO Atendente VALUES ('48466958401', 3);
-INSERT INTO Atendente VALUES ('48487552986', 4);
-INSERT INTO Atendente VALUES ('49371521732', 5);
-INSERT INTO Atendente VALUES ('50413745384', 6);
+INSERT INTO Atendente VALUES ('29874723580', 2); 
+INSERT INTO Atendente VALUES ('48466958401', 3); 
+INSERT INTO Atendente VALUES ('48487552986', 1); 
+INSERT INTO Atendente VALUES ('49371521732', 2); 
+INSERT INTO Atendente VALUES ('50413745384', 3);
 
 INSERT INTO Acompanhante VALUES ('07995976437', 'Iseu Paulino Figueiredo', 'Filho');
 INSERT INTO Acompanhante VALUES ('07995976437', 'Erika Cruz Diovani', 'Tia');
@@ -178,43 +170,54 @@ INSERT INTO Acompanhante VALUES ('23369225255', 'Mirian Meyer Cretella', 'Prima'
 INSERT INTO Acompanhante VALUES ('25483157036', 'Thayná da Souza Barher', 'Mãe');
 INSERT INTO Acompanhante VALUES ('29021059088', 'Marcus Moraes Chiles', 'Filho');
 
-
 INSERT INTO Profissional_de_saude VALUES ('60220992851', null, 1);
+INSERT INTO Profissional_de_saude VALUES ('54201541029', '60220992851', 1);
 INSERT INTO Profissional_de_saude VALUES ('65039251742', '60220992851', 1);
-INSERT INTO Profissional_de_saude VALUES ('69933068326', null, 2);
-INSERT INTO Profissional_de_saude VALUES ('72376837219', '69933068326', 2);
 INSERT INTO Profissional_de_saude VALUES ('74162082030', null, 1);
-INSERT INTO Profissional_de_saude VALUES ('75834244025', null, 2);
-INSERT INTO Profissional_de_saude VALUES ('77299804794', '75834244025', 2);
+INSERT INTO Profissional_de_saude VALUES ('74075272451', '74162082030', 1);
 INSERT INTO Profissional_de_saude VALUES ('77897215504', null, 1);
 INSERT INTO Profissional_de_saude VALUES ('78822220030', '77897215504', 1);
 INSERT INTO Profissional_de_saude VALUES ('84705091957', null, 2);
 INSERT INTO Profissional_de_saude VALUES ('85851790660', '84705091957', 2);
 INSERT INTO Profissional_de_saude VALUES ('89974154685', '84705091957', 2);
+INSERT INTO Profissional_de_saude VALUES ('69933068326', null, 3);
+INSERT INTO Profissional_de_saude VALUES ('72376837219', '69933068326', 3);
+INSERT INTO Profissional_de_saude VALUES ('75834244025', null, 3);
+INSERT INTO Profissional_de_saude VALUES ('74846020940', '75834244025', 3);
+INSERT INTO Profissional_de_saude VALUES ('77299804794', '75834244025', 3);
 
-
+INSERT INTO Turno VALUES ('54201541029', 'M');
 INSERT INTO Turno VALUES ('60220992851', 'M');
 INSERT INTO Turno VALUES ('60220992851', 'T');
 INSERT INTO Turno VALUES ('65039251742', 'T');
+INSERT INTO Turno VALUES ('65039251742', 'N');
 INSERT INTO Turno VALUES ('69933068326', 'M');
-INSERT INTO Turno VALUES ('69933068326', 'T');
+INSERT INTO Turno VALUES ('69933068326', 'N');
 INSERT INTO Turno VALUES ('72376837219', 'M');
 INSERT INTO Turno VALUES ('72376837219', 'T');
+INSERT INTO Turno VALUES ('74075272451', 'M');
+INSERT INTO Turno VALUES ('74075272451', 'T');
 INSERT INTO Turno VALUES ('74162082030', 'M');
+INSERT INTO Turno VALUES ('74846020940', 'N');
+INSERT INTO Turno VALUES ('74846020940', 'M');
 INSERT INTO Turno VALUES ('75834244025', 'T');
+INSERT INTO Turno VALUES ('75834244025', 'M');
 INSERT INTO Turno VALUES ('77299804794', 'T');
 INSERT INTO Turno VALUES ('77897215504', 'T');
-INSERT INTO Turno VALUES ('78822220030', 'M');
+INSERT INTO Turno VALUES ('78822220030', 'N');
 INSERT INTO Turno VALUES ('84705091957', 'T');
 INSERT INTO Turno VALUES ('85851790660', 'M');
-INSERT INTO Turno VALUES ('89974154685', 'M');
+INSERT INTO Turno VALUES ('89974154685', 'N');
 
+INSERT INTO Area_atuacao VALUES ('54201541029', 'Area I da enfermagem');
 INSERT INTO Area_atuacao VALUES ('60220992851', 'Area I da enfermagem');
 INSERT INTO Area_atuacao VALUES ('60220992851', 'Area II da enfermagem');
 INSERT INTO Area_atuacao VALUES ('65039251742', 'Area I da enfermagem');
 INSERT INTO Area_atuacao VALUES ('69933068326', 'Area I da enfermagem');
 INSERT INTO Area_atuacao VALUES ('72376837219', 'Area I da enfermagem');
+INSERT INTO Area_atuacao VALUES ('74075272451', 'Ginecologia e obstetrícia');
 INSERT INTO Area_atuacao VALUES ('74162082030', 'Angiologia e cirurgia vascular:');
+INSERT INTO Area_atuacao VALUES ('74846020940', 'Urologia');
 INSERT INTO Area_atuacao VALUES ('75834244025', 'Cirurgia cardiovascular');
 INSERT INTO Area_atuacao VALUES ('77299804794', 'Ortopedia e traumatologia');
 INSERT INTO Area_atuacao VALUES ('77897215504', 'Clínica Médica');
@@ -224,14 +227,15 @@ INSERT INTO Area_atuacao VALUES ('84705091957', 'Clínica Médica');
 INSERT INTO Area_atuacao VALUES ('85851790660', 'Clínica Médica');
 INSERT INTO Area_atuacao VALUES ('89974154685', 'Clínica Médica');
 
-
+INSERT INTO Enfermeira VALUES ('54201541029', '270274');
 INSERT INTO Enfermeira VALUES ('60220992851', '464256');
 INSERT INTO Enfermeira VALUES ('65039251742', '586481');
 INSERT INTO Enfermeira VALUES ('69933068326', '326585');
 INSERT INTO Enfermeira VALUES ('72376837219', '918270');
 
-
+INSERT INTO Medico VALUES ('74075272451', '289325');
 INSERT INTO Medico VALUES ('74162082030', '110649');
+INSERT INTO Medico VALUES ('74846020940', '71377');
 INSERT INTO Medico VALUES ('75834244025', '93331');
 INSERT INTO Medico VALUES ('77299804794', '46291');
 INSERT INTO Medico VALUES ('77897215504', '697319');
@@ -240,15 +244,16 @@ INSERT INTO Medico VALUES ('84705091957', '708010');
 INSERT INTO Medico VALUES ('85851790660', '488382');
 INSERT INTO Medico VALUES ('89974154685', '812270');
 
-
 INSERT INTO Medico_geral VALUES ('77897215504');
 INSERT INTO Medico_geral VALUES ('78822220030');
 INSERT INTO Medico_geral VALUES ('84705091957');
 INSERT INTO Medico_geral VALUES ('85851790660');
 INSERT INTO Medico_geral VALUES ('89974154685');
 
+INSERT INTO Medico_especialista VALUES ('74075272451', 'Ginecologia');
 INSERT INTO Medico_especialista VALUES ('74162082030', 'Angiologia');
 INSERT INTO Medico_especialista VALUES ('74846020940', 'Urologia');
+INSERT INTO Medico_especialista VALUES ('75834244025', 'Cardiologia');
 INSERT INTO Medico_especialista VALUES ('77299804794', 'Ortopedia');
 
 INSERT INTO Exame VALUES ('Hemograma', 1, 50.00);
@@ -257,7 +262,6 @@ INSERT INTO Exame VALUES ('TGP e TGO', 1, 100.00);
 INSERT INTO Exame VALUES ('TSH', 1, 18.00);
 INSERT INTO Exame VALUES ('Ultrassonografia', 2, 100.00);
 
-
 INSERT INTO Exame_descricao VALUES('Hemograma','Tipo de exame que analisa informações específicas sobre os tipos e quantidades dos componentes no sangue.' );
 INSERT INTO Exame_descricao VALUES('Papanicolau', 'Ajuda a prevenir o câncer no colo de útero e também doenças como o HPV, infecções vaginais e doenças sexualmente transmissíveis');
 INSERT INTO Exame_descricao VALUES('TGP e TGO', 'Exames laboratoriais que se referem à saúde do fígado');
@@ -265,7 +269,6 @@ INSERT INTO Exame_descricao VALUES('TSH', 'Exames laboratoriais para analisar o 
 INSERT INTO Exame_descricao VALUES('Ultrassonografia', 'A ultrassonografia serve para avaliar as estruturas corporais em tempo real. ');
 
 INSERT INTO Laudo VALUES('60220992851','18413380871', 'Hemograma', 'lorem ipsum');
-
 
 INSERT INTO Execucao VALUES('60220992851', TO_TIMESTAMP('26/04/2022 10:13:18', 'DD/MM/YYYY HH:MI:SS'), 'Hemograma');
 
