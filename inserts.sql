@@ -95,16 +95,9 @@ INSERT INTO Pessoa VALUES ('89974154685', 'Carlos Benedito Peixoto', 'M',
     TO_DATE('12/03/1981', 'dd/mm/yyyy'), 'Bom Jesus', null, 'Porto Alegre', 
     'Rua B', 995, 'RS', '91420092', 'Brasil');
 
-
-CREATE SEQUENCE centro_seq
-  MINVALUE 1
-  START WITH 1
-  INCREMENT BY 1
-  NOCACHE;
-
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 70, 'Rendeiras', null, 'Barnaúba', 'Rua Marechal Jorge Gomes', 192, 'SP', 5995782, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 30, 'São José', null, 'Parnaíba', 'Rua Santa Catarina', 2813, 'PI', 69334233, 'Brasil');
-INSERT INTO Centro VALUES (centro_seq.NEXTVAL, 50, 'Centro', null, 'Ariquemes', 'Travessa Antônio Ferreira', 213, 'PA', 68700216, 'Brasil');
+INSERT INTO Centro VALUES (1, 70, 'Rendeiras', null, 'Barnaúba', 'Rua Marechal Jorge Gomes', 192, 'SP', 5995782, 'Brasil');
+INSERT INTO Centro VALUES (2, 30, 'São José', null, 'Parnaíba', 'Rua Santa Catarina', 2813, 'PI', 69334233, 'Brasil');
+INSERT INTO Centro VALUES (3, 50, 'Centro', null, 'Ariquemes', 'Travessa Antônio Ferreira', 213, 'PA', 68700216, 'Brasil');
 
 INSERT INTO Telefone_centro VALUES (1, '(11) 3760-3346');
 INSERT INTO Telefone_centro VALUES (1, '(11) 2665-4205');
@@ -256,11 +249,22 @@ INSERT INTO Medico_especialista VALUES ('74846020940', 'Urologia');
 INSERT INTO Medico_especialista VALUES ('75834244025', 'Cardiologia');
 INSERT INTO Medico_especialista VALUES ('77299804794', 'Ortopedia');
 
-INSERT INTO Exame VALUES ('Hemograma', 1, 50.00);
-INSERT INTO Exame VALUES ('Papanicolau', 1, 100.00);
-INSERT INTO Exame VALUES ('TGP e TGO', 1, 100.00);
-INSERT INTO Exame VALUES ('TSH', 1, 18.00);
-INSERT INTO Exame VALUES ('Ultrassonografia', 2, 100.00);
+INSERT INTO Exame VALUES (1, 'Hemograma', 1, 50.00);
+INSERT INTO Exame VALUES (2, 'Hemograma', 2, 30.00);
+INSERT INTO Exame VALUES (3, 'Papanicolau', 1, 100.00);
+INSERT INTO Exame VALUES (4, 'TGP e TGO', 1, 100.00);
+INSERT INTO Exame VALUES (5, 'TSH', 1, 18.00);
+INSERT INTO Exame VALUES (6, 'Espermograma', 3, 20.00);
+INSERT INTO Exame VALUES (7, 'Ultrassonografia', 2, 100.00);
+INSERT INTO Exame VALUES (8, 'Raio-x de tórax', 3, 200.00);
+INSERT INTO Exame VALUES (9, 'Ressonância magnética.', 3, 150.00);
+INSERT INTO Exame VALUES (10, 'Raio-x da coluna.', 3, 200.00);
+INSERT INTO Exame VALUES (11, 'Ácido Úrico.', 2, 75.00);
+INSERT INTO Exame VALUES (12, 'Tomografia', 2, 180.00);
+INSERT INTO Exame VALUES (13, 'Vulvocospia', 1, 65.00);
+INSERT INTO Exame VALUES (14, 'Tomografia computadorizada', 2, 250.00);
+INSERT INTO Exame VALUES (15, 'Angiografia', 2, 99.99);
+INSERT INTO Exame VALUES (16, ' Glicemia em jejum' , 3, 30.00);
 
 INSERT INTO Exame_descricao VALUES('Hemograma','Tipo de exame que analisa informações específicas sobre os tipos e quantidades dos componentes no sangue.' );
 INSERT INTO Exame_descricao VALUES('Papanicolau', 'Ajuda a prevenir o câncer no colo de útero e também doenças como o HPV, infecções vaginais e doenças sexualmente transmissíveis');
