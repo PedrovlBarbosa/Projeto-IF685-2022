@@ -128,20 +128,18 @@ CREATE TABLE Execucao(cpf_profissional varchar2(11), hora timestamp, nome_exame 
 	CONSTRAINT exec_fkey2 FOREIGN KEY(nome_exame) REFERENCES Exame(nome_exame));
 
 -- Tabela Agendamento
-CREATE TABLE Agendamento(cpf_profissional varchar2(11), 
-				cpf_paciente varchar2(11), cpf_atendente varchar2(11), 
-				hora_marcacao timestamp, hora_agendamento timestamp, 
-				finalidade varchar2(20),
-	CONSTRAINT agend_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),
-	CONSTRAINT agend_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),
-	CONSTRAINT agend_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),
+CREATE TABLE Agendamento(cpf_profissional varchar2(11), cpf_paciente varchar2(11),   
+			 cpf_atendente varchar2(11),  finalidade varchar2(20),  
+	CONSTRAINT agend_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),  
+	CONSTRAINT agend_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),  
+	CONSTRAINT agend_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),  
 	CONSTRAINT agend_fkey3 FOREIGN KEY(cpf_atendente) REFERENCES Atendente(cpf_atendente));
 
 -- Tabela Agendamentos_criados
-CREATE TABLE Agendamento_criado(cpf_atendente varchar2(11), 
-					 hora_marcacao timestamp, hora_agendamento timestamp,
+CREATE TABLE Agendamento_criado(cpf_atendente varchar2(11), hora_marcacao timestamp, 
+				hora_agendamento timestamp,
 	CONSTRAINT agend_criado_pkey PRIMARY KEY(cpf_atendente),
-	CONSTRAINT agend_criado_fkey1 FOREIGN KEY(cpf_atendente) REFERENCES Pessoa(cpf_pessoa))
+	CONSTRAINT agend_criado_fkey1 FOREIGN KEY(cpf_atendente) REFERENCES Pessoa(cpf_pessoa));
 
 CREATE SEQUENCE laudo_seq
   MINVALUE 1 
