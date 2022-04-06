@@ -108,9 +108,9 @@ CREATE TABLE Exame(id_exame INTEGER, nome_exame varchar2(30), descricao VARCHAR2
         CONSTRAINT exame_uniq UNIQUE (nome_exame));
 
 -- Tabela Exame_descricao
-CREATE TABLE Exame_centro(nome_exame VARCHAR2(30), id_centro integer, preco number(7,2), 
-	CONSTRAINT exame_desc_pkey PRIMARY KEY(nome_exame),
-	CONSTRAINT exame_desc_fkey FOREIGN KEY(nome_exame) REFERENCES Exame(nome_exame),
+CREATE TABLE Exame_centro(nome_exame VARCHAR2(30), id_centro integer, preco number(7,2),  
+	CONSTRAINT exame_desc_pkey PRIMARY KEY(nome_exame, id_centro), 
+	CONSTRAINT exame_desc_fkey FOREIGN KEY(nome_exame) REFERENCES Exame(nome_exame), 
         CONSTRAINT exame_fkey FOREIGN KEY(id_centro) REFERENCES Centro (id_centro));
 
 -- Tabela Laudo
