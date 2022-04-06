@@ -129,7 +129,7 @@ CREATE TABLE Execucao(cpf_profissional varchar2(11), hora timestamp, nome_exame 
 
 -- Tabela Agendamento
 CREATE TABLE Agendamento(cpf_profissional varchar2(11), cpf_paciente varchar2(11),   
-			 cpf_atendente varchar2(11),  finalidade varchar2(20),  
+			 cpf_atendente varchar2(11),  finalidade varchar2(50),  
 	CONSTRAINT agend_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),  
 	CONSTRAINT agend_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),  
 	CONSTRAINT agend_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),  
