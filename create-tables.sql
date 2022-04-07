@@ -1,9 +1,8 @@
-DROP TABLE Agendamento_criado;
 DROP TABLE Agendamento;
 DROP TABLE Execucao;
 DROP TABLE Acompanhante;
 DROP TABLE Laudo;
-DROP TABLE Exame_descricao;
+DROP TABLE Exame_centro;
 DROP TABLE Exame;
 DROP TABLE Paciente;
 DROP TABLE Atendente;
@@ -16,24 +15,34 @@ DROP TABLE Area_atuacao;
 DROP TABLE Profissional_de_saude;
 DROP TABLE Telefone_pessoa;
 DROP TABLE Telefone_centro;
+DROP TABLE Endereco_centro;
 DROP TABLE Centro;
+DROP TABLE Endereco_pessoa;
 DROP TABLE Pessoa;
 DROP SEQUENCE laudo_seq;
 DROP SEQUENCE exame_seq;
 
 -- Tabela Centro
-CREATE TABLE Centro(id_centro INTEGER, capacidade INTEGER, 
+CREATE TABLE Centro(id_centro INTEGER, capacidade INTEGER,  
+	CONSTRAINT centro_pkey PRIMARY KEY(id_centro));
+
+CREATE TABLE Endereco_centro(id_centro INTEGER, cep VARCHAR2(9), 
 	bairro VARCHAR2(20), complemento VARCHAR2(20), 
 	cidade VARCHAR2(20), rua VARCHAR2(40), numero INTEGER, 
-	estado VARCHAR2(2), cep VARCHAR2(9), pais VARCHAR2(20), 
-	CONSTRAINT centro_pkey PRIMARY KEY(id_centro))
+	estado VARCHAR2(2), pais VARCHAR2(20), 
+	CONSTRAINT centro_addr_pkey PRIMARY KEY(id_centro, cep),
+    	CONSTRAINT centro_addr_fkey FOREIGN KEY(id_centro) REFERENCES Centro(id_centro));
 
 -- Tabela Pessoa
 CREATE TABLE Pessoa(cpf_pessoa VARCHAR2(11), nome VARCHAR2(40), 
 	sexo CHAR(1) CHECK (sexo in ('F', 'M')), data_de_nascimento DATE, 
-	bairro VARCHAR2(35), complemento VARCHAR2(20), cidade VARCHAR2(35), 
-	rua VARCHAR2(40), numero INTEGER, estado VARCHAR2(2), cep VARCHAR2(8), 
-	pais VARCHAR2(20), CONSTRAINT pessoa_pkey PRIMARY KEY(cpf_pessoa));
+	CONSTRAINT pessoa_pkey PRIMARY KEY(cpf_pessoa));
+
+CREATE TABLE Endereco_pessoa(cpf_pessoa VARCHAR2(11), cep VARCHAR2(9), 
+    bairro VARCHAR2(35), complemento VARCHAR2(20), cidade VARCHAR2(35), 
+    rua VARCHAR2(40), numero INTEGER, estado VARCHAR2(2), pais VARCHAR2(20), 
+    CONSTRAINT pessoa_addr_pkey PRIMARY KEY(cpf_pessoa, cep),
+    CONSTRAINT pessoa_addr_fkey FOREIGN KEY(cpf_pessoa) REFERENCES Pessoa(cpf_pessoa));
 
 -- Tabela Telefone_pessoa
 CREATE TABLE Telefone_pessoa(dono VARCHAR2(11), numero_telefone VARCHAR2(16),
@@ -128,18 +137,12 @@ CREATE TABLE Execucao(cpf_profissional varchar2(11), hora timestamp, nome_exame 
 	CONSTRAINT exec_fkey2 FOREIGN KEY(nome_exame) REFERENCES Exame(nome_exame));
 
 -- Tabela Agendamento
-CREATE TABLE Agendamento(cpf_profissional varchar2(11), cpf_paciente varchar2(11),   
-			 cpf_atendente varchar2(11),  finalidade varchar2(50),  
-	CONSTRAINT agend_pkey PRIMARY KEY(cpf_profissional, cpf_paciente),  
-	CONSTRAINT agend_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),  
+CREATE TABLE Agendamento(cpf_atendente varchar2(11), hora_agendamento timestamp, hora_marcacao timestamp, 
+                         cpf_profissional varchar2(11), cpf_paciente varchar2(11), finalidade varchar2(50),  
+	CONSTRAINT agend_pkey PRIMARY KEY(cpf_atendente, hora_agendamento),  
 	CONSTRAINT agend_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),  
-	CONSTRAINT agend_fkey3 FOREIGN KEY(cpf_atendente) REFERENCES Atendente(cpf_atendente));
-
--- Tabela Agendamentos_criados
-CREATE TABLE Agendamento_criado(cpf_atendente varchar2(11), hora_marcacao timestamp, 
-				hora_agendamento timestamp,
-	CONSTRAINT agend_criado_pkey PRIMARY KEY(cpf_atendente),
-	CONSTRAINT agend_criado_fkey1 FOREIGN KEY(cpf_atendente) REFERENCES Pessoa(cpf_pessoa));
+	CONSTRAINT agend_fkey3 FOREIGN KEY(cpf_atendente) REFERENCES Atendente(cpf_atendente),
+	CONSTRAINT agend_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional));
 
 CREATE SEQUENCE laudo_seq
   MINVALUE 1 
