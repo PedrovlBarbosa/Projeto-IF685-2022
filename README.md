@@ -1,2 +1,4 @@
-# Projeto-IF685-2022
-Project of GDI (GERENCIAMENTO DADOS E INFORMACAO) class, building a database.
+# Projeto de GDI 2022
+Construindo uma aplicação para centros de diagnósticos médicos
+
+![Diagrama EER](./projeto.png)

@@ -126,7 +126,7 @@ CREATE TABLE Exame_centro(nome_exame VARCHAR2(30), id_centro integer, preco numb
 CREATE TABLE Laudo(laudo_id INTEGER, cpf_profissional VARCHAR2(11), cpf_paciente VARCHAR2(11),
 		                   nome_exame VARCHAR2(30), resultado VARCHAR2(255),
 	CONSTRAINT laudo_pkey PRIMARY KEY(laudo_id),
-	CONSTRAINT laudo_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Profissional_de_saude(cpf_profissional),
+	CONSTRAINT laudo_fkey1 FOREIGN KEY(cpf_profissional) REFERENCES Medico(cpf_medico),
 	CONSTRAINT laudo_fkey2 FOREIGN KEY(cpf_paciente) REFERENCES Paciente(cpf_paciente),
 	CONSTRAINT laudo_fkey3 FOREIGN KEY(nome_exame) REFERENCES Exame(nome_exame));
 

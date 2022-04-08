@@ -271,18 +271,18 @@ INSERT INTO Exame_centro VALUES ('Vulvocospia', 1, 80.00);
 INSERT INTO Exame_centro VALUES ('Angiografia', 2, 2000.00);
 INSERT INTO Exame_centro VALUES ('Glicemia em jejum' , 3, 6.00);
 
-INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '60220992851', '07995976437', 'TSH', '<4,5 μUI/mL: níveis normais de TSH no sangue, com baixa probabilidade de hipotireoidismo. de 4,5 a 10 μUI/mL: alteração no nível de TSH no sangue, podendo indicar um caso de hipotireodismo.');
+INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '74075272451', '07995976437', 'TSH', '<4,5 μUI/mL: níveis normais de TSH no sangue, com baixa probabilidade de hipotireoidismo. de 4,5 a 10 μUI/mL: alteração no nível de TSH no sangue, podendo indicar um caso de hipotireodismo.');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '74075272451', '12826023497', 'Vulvocospia', 'Candidíase encontrada na vulva, com ausência de lesões.');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '78822220030', '18413380871', 'TGP e TGO', 'Níveis de TGO: 35 U/L, níveis de TGP: 30 U/L no sangue.');
-INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '54201541029', '19125818414', 'Hemograma', 'Hemoglobina: 16.3 g/dL, Hematrócito: 58.3%, Hematimetria: 5.7, Reticulócitos: 1.8, VCM: 82 fL, HCM: 30 g/dL de hemácias, CHCM: 35 g/dL, Índice de anisocitose 13.5 RDW');
+INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '78822220030', '19125818414', 'Hemograma', 'Hemoglobina: 16.3 g/dL, Hematrócito: 58.3%, Hematimetria: 5.7, Reticulócitos: 1.8, VCM: 82 fL, HCM: 30 g/dL de hemácias, CHCM: 35 g/dL, Índice de anisocitose 13.5 RDW');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '74162082030', '23369225255', 'Papanicolau', 'Alterações celulares benignas, geralmente causadas por processos inflamatórios');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '89974154685', '25483157036', 'Angiografia', 'Encontrado um Tumor cerebral.');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '85851790660', '29021059088', 'Ultrassonografia', 'Segue em anexo:');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '84705091957', '07995976437', 'Tomografia computadorizada', 'Tumores benigno encontrado na região cerebral.');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '84705091957', '12826023497', 'Ácido Úrico.', 'Possui 3,7 mg/dl de ácido úrico.');
-INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '72376837219', '18413380871', 'Ressonância magnética.', 'Doença de Parkinson');
+INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '84705091957', '18413380871', 'Ressonância magnética.', 'Doença de Parkinson');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '77299804794', '19125818414', 'Glicemia em jejum', 'Resultado inferior a 99 mg/dL');
-INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '69933068326', '23369225255', 'Raio-x de tórax', 'Tuberculose encontrada, causada pelo Mycobacterium tuberculosis nos pulmões.');
+INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '75834244025', '23369225255', 'Raio-x de tórax', 'Tuberculose encontrada, causada pelo Mycobacterium tuberculosis nos pulmões.');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '75834244025', '25483157036', 'Raio-x da coluna.', 'Segue em anexo:');
 INSERT INTO Laudo VALUES(laudo_seq.NEXTVAL, '74846020940', '29021059088', 'Espermograma', '15 milhões de espermatozoides por ml.');
 
