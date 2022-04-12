@@ -93,7 +93,7 @@ CREATE TABLE Area_atuacao(profissional VARCHAR2(11), area VARCHAR2(40),
 CREATE TABLE Enfermeira(cpf_enfermeira VARCHAR2(11), COREN VARCHAR2(20) NOT NULL,  
 	CONSTRAINT enfermeira_pkey PRIMARY KEY(cpf_enfermeira),  
 	CONSTRAINT enfermeira_unique UNIQUE (COREN),  
-	CONSTRAINT enfermeira_fkey FOREIGN KEY(cpf_enfermeira) REFERENCES Profissional_de_saude(cpf_profissional))
+	CONSTRAINT enfermeira_fkey FOREIGN KEY(cpf_enfermeira) REFERENCES Profissional_de_saude(cpf_profissional));
 	
 -- Tabela Medico
 CREATE TABLE Medico(cpf_medico VARCHAR2(11), CRM VARCHAR2(20) NOT NULL,
