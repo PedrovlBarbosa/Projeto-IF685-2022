@@ -116,12 +116,13 @@ WHERE estado <> ALL(SELECT estado FROM Endereco_centro);
 -- 21 ORDER BY: Ordena todos os centros pela capacidade
 SELECT FROM Centro ORDER BY capacidade;
 
--- 22 GROUP BY: Exibe a relação entre os centros e o total de profissionais da saúde desse centro
+-- 22 GROUP BY: Exibe a quantidade de profissionais de saúde agrupado pelo centro
 SELECT Centro.id_centro as centro, COUNT(cpf_profissional) AS total_profissionais
     FROM Profissional_de_saude, Centro WHERE centro = Centro.id_centro
 GROUP BY Centro.id_centro;
 
--- 23 HAVING: Mostra os médicos que mais produzem laudos
+-- 23 HAVING: Exibe o CPF, nome e quantidade de lados dos médicos que 
+--            tem uma quantidade de laudos acima da média
 SELECT
  Pessoa.cpf_pessoa AS cpf_medico,
  Pessoa.nome as nome_do_medico,
