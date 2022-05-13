@@ -204,7 +204,7 @@ CREATE TABLE tb_exame_centro OF tp_exame_centro(
 
 CREATE OR REPLACE TYPE tp_laudo AS OBJECT(
     laudo_id INTEGER,
-    medico REF tp_medico, -- era profissional da saudo, mas acho que faz mais sentido apenas medico
+    medico REF tp_medico,
     paciente REF tp_paciente, 
     exame REF tp_exame,
     resultado VARCHAR2(255)
