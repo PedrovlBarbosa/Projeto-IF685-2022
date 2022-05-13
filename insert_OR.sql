@@ -130,7 +130,7 @@ INSERT INTO tb_centro VALUES(
 );
 
 INSERT INTO tb_centro VALUES(
-    tp_centro(6, 30,
+    tp_centro(2, 30,
         tp_endereco('68700216', 'Centro', null, 'Ariquemes', 'Travessa Antônio Ferreira', 213, 'PA', 'Brasil'),
         lista_telefones(
             tp_telefone('(86) 2134-3872'),
@@ -311,7 +311,7 @@ INSERT INTO tb_exame VALUES (
 );
 
 INSERT INTO tb_centro VALUES(
-    tp_centro(12, 50, 
+    tp_centro(3, 50, 
         tp_endereco(69334233, 'São José', null, 'Parnaíba', 'Rua Santa Catarina', 2813, 'PI', 'Brasil'),
         lista_telefones(
             tp_telefone('(91) 3753-3422'),
@@ -639,7 +639,7 @@ INSERT INTO tb_agendamento VALUES(
     tp_agendamento(
         '48466958401',
         TO_TIMESTAMP('16/07/2021 08:43:05', 'DD/MM/YYYY HH24:MI:SS'),
-        O_TIMESTAMP('09/11/2020 21:54:32', 'DD/MM/YYYY HH24:MI:SS'),
+        TO_TIMESTAMP('09/11/2020 21:54:32', 'DD/MM/YYYY HH24:MI:SS'),
         null,
         (SELECT REF(P) FROM tb_paciente P WHERE P.cpf_pessoa = '25483157036'),
         'Realizar o exame de Raio-x da coluna'

@@ -20,19 +20,19 @@ CREATE OR REPLACE TYPE tp_endereco AS OBJECT(
 	estado VARCHAR2(2), 
     pais VARCHAR2(20)
 );
+/
 
 --TELEFONE
-/
 CREATE OR REPLACE TYPE tp_telefone AS OBJECT(
     telefone VARCHAR2(16)
 );
+/
 
 --TELEFONE NESTED TABLE
-/
 CREATE OR REPLACE TYPE lista_telefones AS TABLE OF tp_telefone;
+/ 
 
 -- CLASSE ABSTRATA PESSOA
-/ 
 CREATE OR REPLACE TYPE tp_pessoa AS OBJECT(
     cpf_pessoa VARCHAR2(11), 
     nome VARCHAR2(50), 
@@ -70,16 +70,64 @@ CREATE OR REPLACE TYPE tp_area_atuacao AS OBJECT(
 -- VARRAY DE AREA ATUACAO 
 -- EXECUTAR ESSE SOZINHO, DA ERRO QUANDO EXECUTA EM LOTE
 CREATE OR REPLACE TYPE lst_areas AS VARRAY(4) OF tp_area_atuacao;
+/
 
 -- TIPO FILHO DE PESSOA QUE TBM É UMA CLASSE ABSTRATA
 CREATE OR REPLACE TYPE tp_profissional_de_saude UNDER tp_pessoa(
     turnos lst_turno,
     areas_atuacao lst_areas, 
-    gerente REF tp_profissional_de_saude
+    gerente REF tp_profissional_de_saude,
+    MEMBER FUNCTION get_documento RETURN VARCHAR2
 ) NOT FINAL NOT INSTANTIABLE;
 /
+
+CREATE OR REPLACE TYPE BODY tp_profissional_de_saude AS 
+    MEMBER FUNCTION get_documento RETURN VARCHAR2 IS
+    BEGIN
+        RETURN cpf_pessoa;
+    END;
+END;
+/
+
 -- NESTED TABLE DE PROFISSIONAIS DE SAUDE
 CREATE OR REPLACE TYPE tp_lista_profissionais AS TABLE OF tp_profissional_de_saude;
+/
+
+-- TIPO ENFERMEIRA
+CREATE OR REPLACE TYPE tp_enfermeira UNDER tp_profissional_de_saude(
+    COREN VARCHAR2(20),
+    OVERRIDING MEMBER FUNCTION get_documento RETURN VARCHAR2
+);
+/
+
+CREATE OR REPLACE TYPE BODY tp_enfermeira AS 
+    OVERRIDING MEMBER FUNCTION get_documento RETURN VARCHAR2 IS
+    BEGIN
+        RETURN coren;
+    END;
+END;
+/
+
+CREATE OR REPLACE TYPE tp_medico UNDER tp_profissional_de_saude(
+    CRM VARCHAR2(20),
+    OVERRIDING MEMBER FUNCTION get_documento RETURN VARCHAR2
+)NOT FINAL NOT INSTANTIABLE;
+
+/
+CREATE OR REPLACE TYPE BODY tp_medico AS 
+    OVERRIDING MEMBER FUNCTION get_documento RETURN VARCHAR2 IS
+    BEGIN
+        RETURN crm;
+    END;
+END;
+/
+
+CREATE OR REPLACE TYPE tp_medico_especialista UNDER tp_medico(
+    especialidade VARCHAR2(50)
+);
+/
+
+CREATE OR REPLACE TYPE tp_medico_geral UNDER tp_medico();
 /
 
 -- CENTRO
@@ -93,6 +141,7 @@ CREATE OR REPLACE TYPE tp_centro AS OBJECT(
     lista_profissionais tp_lista_profissionais
 );
 /
+
 -- TABELA CENTRO
 CREATE TABLE tb_centro OF tp_centro(
     PRIMARY KEY(id_centro)
@@ -102,13 +151,14 @@ NESTED TABLE lista_atendentes STORE AS atendente_NT (NESTED TABLE telefones STOR
 NESTED TABLE lista_profissionais STORE AS profissional_NT (NESTED TABLE telefones STORE AS telefone_profissional_NT); 
 -- COMO PESSOA TEM UMA NT DE TELEFONE TEMOS UMA NT DE NT 
 /
+
 -- ACOMPANHANTE
 CREATE OR REPLACE TYPE tp_acompanhante AS OBJECT(
     nome_acompanhante  VARCHAR2(50), 
     parentesco VARCHAR2(10)
 );
-
 /
+
 -- VARRAY DE ACOMPANHANTE
 CREATE OR REPLACE TYPE tp_acompanhantes AS VARRAY(3) OF tp_acompanhante;
 /
@@ -117,40 +167,27 @@ CREATE OR REPLACE TYPE tp_acompanhantes AS VARRAY(3) OF tp_acompanhante;
 CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa(
     lista_acompanhantes tp_acompanhantes
 );
-
 /
+
 -- TABELA PACIENTE
 CREATE TABLE tb_paciente OF tp_paciente(
     PRIMARY KEY(cpf_pessoa)
 )NESTED TABLE telefones STORE AS fones_NT_paciente;
 /
--- TIPO ENFERMEIRA
-CREATE OR REPLACE TYPE tp_enfermeira UNDER tp_profissional_de_saude(
-    COREN VARCHAR2(20)
-);
-/
 
-CREATE OR REPLACE TYPE tp_medico UNDER tp_profissional_de_saude(
-    CRM VARCHAR2(20)
-)NOT FINAL NOT INSTANTIABLE;
-/
-CREATE OR REPLACE TYPE tp_medico_especialista UNDER tp_medico(
-    especialidade VARCHAR2(50)
-);
-/
-CREATE OR REPLACE TYPE tp_medico_geral UNDER tp_medico();
-/
 CREATE OR REPLACE TYPE tp_exame AS OBJECT(
     id_exame INTEGER,
     nome_exame VARCHAR2(50),
     descricao VARCHAR2(255)
 );
 /
+
 CREATE TABLE tb_exame OF tp_exame(
     PRIMARY KEY(id_exame),
     UNIQUE(nome_exame)
 );
 /
+
 CREATE OR REPLACE TYPE tp_exame_centro AS OBJECT(
     nome_exame VARCHAR2(50),
     id_centro INTEGER,
@@ -179,6 +216,7 @@ CREATE TABLE tb_laudo OF tp_laudo(
     exame SCOPE IS tb_exame
 );
 /
+
 CREATE OR REPLACE TYPE tp_agendamento AS OBJECT(
     cpf_atendente VARCHAR2(11),
     hora_agendamento timestamp, 
@@ -193,5 +231,6 @@ CREATE TABLE tb_agendamento OF tp_agendamento(
     PRIMARY KEY(cpf_atendente, hora_agendamento)
 );
 /
+
 ALTER TYPE tp_exame_centro
-ADD ATTRIBUTE (tempo_medio VARCHAR2(11));
+ADD ATTRIBUTE (tempo_medio VARCHAR2(11)) CASCADE;
