@@ -167,7 +167,7 @@ db.estudantes.insertMany([
         "name": "Anna Beatriz Castro",
         "email": "annaBC@email.com",
         "birthDate": new Date("02/27/1989"),
-        "password": "senha",
+        "password": "2b0dfb4389a743e54fb7706ff6f885a9",
         "courseList": [
             {
                 "name": "course3",
@@ -183,19 +183,3 @@ db.estudantes.insertMany([
         "cpf": "96335741032"
     }
 ]);
-
-// Rename collection
-db.estudantes.renameCollection("students");
-
-// Remove password field
-db.students.update(
-    {}, 
-    { $unset: {
-        password: 1
-    } }, 
-    { multi: true } 
-);
-
-// db.courses.save(<document>) is deprecated: 
-// Returns: TypeError: db.students.save is not a function
-// https://www.mongodb.com/docs/v4.4/reference/method/db.collection.save/

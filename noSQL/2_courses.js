@@ -268,7 +268,7 @@ db.courses.insertOne({
     ]
 });
 
-db.courses.insertOne({
+db.courses.save({
     "name": "Curso Polícia Federal",
     "description": "Curso completo para concursos da polícia federal",
     "durationInMonths": 4,
