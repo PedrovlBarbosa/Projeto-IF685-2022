@@ -12,9 +12,9 @@ db.students.find({
 })
 
 // [FindOne] Devolve um curso que é híbrido (Online e presencial)
-db.students.findOne({
+db.courses.findOne({
     "address": {
-        $exists: false
+        $ne: null
     }, 
     "URL": {
         $ne: "" 
@@ -71,10 +71,6 @@ db.courses.aggregate([{
 }, {
     $limit: 3
 }])
-
-// [Search] [Text] Procura algum curso voltado para Pernambuco
-db.courses.createIndex( { targetContests: "text" } )
-db.courses.find({ $text: { $search: "Pernambuco" }})
 
 // [Match] [Project] Todos os alunos acima de 18 anos
 db.students.aggregate([{
@@ -193,12 +189,16 @@ db.students.aggregate([
     }
 ]);
 
+// [Search] [Text] Procura algum curso voltado para Pernambuco
+db.courses.createIndex( { targetContests: "text" } )
+db.courses.find({ $text: { $search: "Pernambuco" }})
+
 // [MapReduce] [Max] O preço máximo de cada curso
 var mapFunction1 = function() {
     emit(this.name, this.price) 
 }
 var reduceFunction1 = function(key, prices) {
-    return Array.sum(prices) 
+    return Math.max(prices) 
 }
 db.courses.mapReduce(
     mapFunction1, 
