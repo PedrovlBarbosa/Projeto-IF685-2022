@@ -194,15 +194,15 @@ db.students.aggregate([
 ]);
 
 // [MapReduce] [Max] O preço máximo de cada curso
-var mapFunction = function() {
+var mapFunction1 = function() {
     emit(this.name, this.price) 
 }
-var reduceFunction = function(key, prices) {
-    return Math.max(prices) 
+var reduceFunction1 = function(key, prices) {
+    return Array.sum(prices) 
 }
 db.courses.mapReduce(
-    mapFunction, 
-    reduceFunction,
-    { out: "map_reduce_function" }
+    mapFunction1, 
+    reduceFunction1,
+    { out: "map_reduce_function_1" }
 )  
-db.courses.map_reduce_function.find()
+db.courses.map_reduce_function_1.find()
