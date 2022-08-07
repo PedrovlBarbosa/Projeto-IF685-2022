@@ -1,4 +1,8 @@
-# Projeto de GDI 2022
+# Projetos GDI 2022
+
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
 Aprendendo as etapas da criação de um banco de dados desde a modelagem até a implementação, utilizando o banco de dados Oracle e MongoDB, no qual foi seguido o seguinte caminho:
 1. Especificação de minimundo
 2. Instanciação do esquema conceitual (ER)
@@ -20,5 +24,8 @@ Aprendendo as etapas da criação de um banco de dados desde a modelagem até a 
 No qual foram feitos quatro projetos no total.
 
 ## Centros de diagnósticos médicos
-![Diagrama EER](./projeto.png)
+![Diagrama EER](./clinicas.png)
+
+## Alugueis de salas e lojas
+![Diagrama EER](./alugueis.png)
 
