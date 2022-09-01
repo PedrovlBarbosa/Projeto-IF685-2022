@@ -106,8 +106,8 @@ CREATE TABLE Avaliacao (
 );
 
 CREATE TABLE Lucro ( 
-  	porc_locador NUMBER(5, 2), 
-    	porc_corretor NUMBER(5, 2), 
+  	porc_locador NUMBER(6, 2), 
+    	porc_corretor NUMBER(6, 2), 
  
 	CONSTRAINT porc_locador_pkey PRIMARY KEY(porc_locador) 
 );
@@ -119,7 +119,7 @@ CREATE TABLE Aluguel (
   	codigo_sala INTEGER,
   	data_inicio DATE,
   	data_final DATE,
-  	porc_locador NUMBER(5, 2),
+  	porc_locador NUMBER(6, 2),
 
 	CONSTRAINT alguel_pkey PRIMARY KEY(codigo_sala, cpf_locatario, cpf_dono, data_inicio),	
 	CONSTRAINT porc_locador_fkey FOREIGN KEY (porc_locador) REFERENCES Lucro(porc_locador),
