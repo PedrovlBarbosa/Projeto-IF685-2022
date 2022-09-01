@@ -14,10 +14,10 @@ DROP SEQUENCE sala_seq;
 
 CREATE TABLE Endereco (
     cep VARCHAR2(8),
-    complemento VARCHAR2(2),
-    bairro VARCHAR2(20),
-    rua VARCHAR2(20),
-    cidade VARCHAR2(20),
+    complemento VARCHAR2(12),
+    bairro VARCHAR2(40),
+    rua VARCHAR2(40),
+    cidade VARCHAR2(40),
     estado CHAR(2),
     CONSTRAINT cep_pkey PRIMARY KEY(cep)
 );
@@ -82,7 +82,7 @@ CREATE TABLE Fiador (
 
 CREATE TABLE Sala (
     	codigo INTEGER,
-    	area NUMBER(3, 2),
+    	area NUMBER(6, 2),
     	cep_sala VARCHAR(8),
     	cpf_adm VARCHAR2(14),
     	cpf_dono VARCHAR2(14),
@@ -97,7 +97,7 @@ CREATE TABLE Avaliacao (
 	cpf_corretor VARCHAR2(14),
     	cpf_locador VARCHAR2(14),
 	codigo_sala INTEGER,
-	preco_unit NUMBER(3, 2),
+	preco_unit NUMBER(6, 2),
 
     	CONSTRAINT codigo_sala_avaliacao_fkey FOREIGN KEY(codigo_sala, cpf_locador) REFERENCES Sala(codigo, cpf_dono),
 	CONSTRAINT cpf_locador_avaliacao_fkey FOREIGN KEY(cpf_locador) REFERENCES Locador(cpf_locador),
@@ -106,8 +106,8 @@ CREATE TABLE Avaliacao (
 );
 
 CREATE TABLE Lucro ( 
-  	porc_locador NUMBER(2, 2), 
-    	porc_corretor NUMBER(2, 2), 
+  	porc_locador NUMBER(5, 2), 
+    	porc_corretor NUMBER(5, 2), 
  
 	CONSTRAINT porc_locador_pkey PRIMARY KEY(porc_locador) 
 );
@@ -119,7 +119,7 @@ CREATE TABLE Aluguel (
   	codigo_sala INTEGER,
   	data_inicio DATE,
   	data_final DATE,
-  	porc_locador NUMBER(2, 2),
+  	porc_locador NUMBER(5, 2),
 
 	CONSTRAINT alguel_pkey PRIMARY KEY(codigo_sala, cpf_locatario, cpf_dono, data_inicio),	
 	CONSTRAINT porc_locador_fkey FOREIGN KEY (porc_locador) REFERENCES Lucro(porc_locador),
