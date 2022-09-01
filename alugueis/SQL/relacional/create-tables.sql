@@ -1,5 +1,5 @@
-DROP TABLE aluguel;
-DROP TABLE lucro;
+DROP TABLE Aluguel;
+DROP TABLE Lucro;
 DROP TABLE Avaliacao;
 DROP TABLE Sala;
 DROP TABLE Fiador;
@@ -81,35 +81,35 @@ CREATE TABLE Fiador (
 );
 
 CREATE TABLE Sala (
-    codigo INTEGER,
-    area NUMBER(3, 2),
-    cep_sala VARCHAR(8),
-    cpf_adm VARCHAR2(14),
-    cpf_dono VARCHAR2(14),
+    	codigo INTEGER,
+    	area NUMBER(3, 2),
+    	cep_sala VARCHAR(8),
+    	cpf_adm VARCHAR2(14),
+    	cpf_dono VARCHAR2(14),
 
-    CONSTRAINT sala_pkey PRIMARY KEY(codigo, cpf_dono),
-    CONSTRAINT cep_sala_fkey FOREIGN KEY(cep_sala) REFERENCES Endereco(cep),
+    	CONSTRAINT sala_pkey PRIMARY KEY(codigo, cpf_dono),
+    	CONSTRAINT cep_sala_fkey FOREIGN KEY(cep_sala) REFERENCES Endereco(cep),
 	CONSTRAINT cpf_adm_fkey FOREIGN KEY(cpf_adm) REFERENCES Corretor(cpf_corretor),
 	CONSTRAINT cpf_dono_sala_fkey FOREIGN KEY(cpf_dono) REFERENCES Locador(cpf_locador)
 );
 
 CREATE TABLE Avaliacao (
 	cpf_corretor VARCHAR2(14),
-    cpf_locador VARCHAR2(14),
+    	cpf_locador VARCHAR2(14),
 	codigo_sala INTEGER,
 	preco_unit NUMBER(3, 2),
 
-    CONSTRAINT codigo_sala_avaliacao_fkey FOREIGN KEY(codigo_sala, cpf_locador) REFERENCES Sala(codigo, cpf_dono),
+    	CONSTRAINT codigo_sala_avaliacao_fkey FOREIGN KEY(codigo_sala, cpf_locador) REFERENCES Sala(codigo, cpf_dono),
 	CONSTRAINT cpf_locador_avaliacao_fkey FOREIGN KEY(cpf_locador) REFERENCES Locador(cpf_locador),
 	CONSTRAINT cpf_corretor_avaliacao_fkey FOREIGN KEY(cpf_corretor) REFERENCES Corretor(cpf_corretor),
 	CONSTRAINT avaliacao_pkey PRIMARY KEY(codigo_sala, cpf_locador, cpf_corretor)
 );
 
-CREATE TABLE lucro (
-  	porc_locador NUMBER(2, 2),
-    porc_corretor NUMBER(2, 2),
-
-	CONSTRAINT porc_locador_pkey PRIMARY KEY(porc_locador)
+CREATE TABLE Lucro ( 
+  	porc_locador NUMBER(2, 2), 
+    	porc_corretor NUMBER(2, 2), 
+ 
+	CONSTRAINT porc_locador_pkey PRIMARY KEY(porc_locador) 
 );
 
 CREATE TABLE Aluguel (
