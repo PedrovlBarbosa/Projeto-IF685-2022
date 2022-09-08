@@ -13,10 +13,20 @@ UPDATE Corretor SET salario = 6200 WHERE cpf_corretor = '093.010.763-78';
 -- DELETE
 DELETE FROM PESSOA WHERE CPF = '092.849.620-13';
 
--- WHERE and BETWEEN
-SELECT P.nome, P.data_nasc FROM Pessoa P WHERE P.data_nasc BETWEEN TO_DATE('1984', 'yyyy') AND TO_DATE('1995', 'yyyy');
+-- WHERE
+SELECT cep, complemento, bairro, rua, cidade FROM Endereco WHERE estado = 'PE';
 
--- MAX and IN
+-- BETWEEN
+SELECT P.nome, P.data_nasc FROM Pessoa P WHERE 
+    P.data_nasc BETWEEN TO_DATE('1984', 'yyyy') AND TO_DATE('1995', 'yyyy');
+
+-- MAX 
+SELECT MAX(porc_locador) AS lucro_maximo_locador FROM Lucro;
+
+-- MIN
+SELECT cpf FROM Pessoa WHERE data_nasc = (SELECT MIN(data_nasc) FROM Pessoa);
+
+-- IN
 SELECT P.nome, E.estado, CR.salario FROM Corretor CR 
     INNER JOIN Pessoa P ON P.cpf = CR.cpf_corretor
     INNER JOIN Endereco E ON P.cep_pessoa = E.cep
@@ -35,7 +45,7 @@ SELECT P.nome, CR.salario FROM Corretor CR
     INNER JOIN Pessoa P ON P.cpf = CR.cpf_corretor
 ORDER BY salario desc;
 
--- MIN and SUBCONSULTA COM IN
+-- SUBCONSULTA COM IN
 SELECT P.nome, E.estado, CR.salario FROM Corretor CR
     INNER JOIN Pessoa P ON P.cpf = CR.cpf_corretor
     INNER JOIN Endereco E ON P.cep_pessoa = E.cep
@@ -53,7 +63,17 @@ SELECT P1.nome, CR.salario, P2.nome as supervisor FROM Pessoa P1
     LEFT OUTER JOIN Pessoa P2 ON CR.CPF_SUPERVISOR = P2.CPF
 ORDER BY CR.salario desc;
 
--- SUBCONSULTA COM RELACIONAL and ALL
+-- SUBCONSULTA COM RELACIONAL
+SELECT * FROM Aluguel WHERE porc_locador = SOME(45, 65, 85);
+
+-- SUBCONSULTA COM ANY
+SELECT AVG(preco_unit) FROM Avaliacao WHERE cpf_corretor = ANY(
+    SELECT cpf_adm FROM Sala
+        INNER JOIN Corretor ON cpf_corretor = cpf_adm
+    WHERE salario > 2000
+);
+
+-- SUBCONSULTA COM ALL
 SELECT CODIGO FROM SALA WHERE AREA > ALL (
     SELECT PRECO_UNIT FROM AVALIACAO WHERE CODIGO_SALA = 7
 );
@@ -73,6 +93,12 @@ SELECT P.nome, COUNT(*) FROM Sala S
     INNER JOIN Pessoa P ON CR.cpf_corretor = P.cpf
     WHERE CR.salario > 1000 GROUP BY P.nome
 HAVING COUNT(*) > 1;
+
+-- MINUS
+SELECT cpf_fiador FROM Aluguel MINUS (
+    SELECT cpf_fiador FROM Fiador
+        INNER JOIN Pessoa ON Pessoa.cpf = Fiador.cpf_fiador
+    WHERE sexo = 'M');
 
 -- CREATE VIEW
 CREATE VIEW Sala_area_preco AS
